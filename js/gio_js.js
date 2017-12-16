@@ -61,6 +61,8 @@ jQuery(document).ready( function($) {
 			}
             else if ( args.result == 'google_rejected' ) {
                 $('.gio-results').prepend('<div class="gio-result error">' + args.message + '</div>');
+				gio.rejected++;
+                gio.progress++;				
             }			
             else if ( args.result == 'google_soft_reject' ) {
                 $('.gio-results').prepend('<div class="gio-result error">' + args.message + '</div>');
@@ -77,8 +79,6 @@ jQuery(document).ready( function($) {
 			}	
             else if ( args.result == 'google_hard_reject' ) {
 				$('.gio-results').prepend('<div class="gio-result error">' + args.message + '</div>');
-				gio.rejected++;
-                gio.progress++;
             }
             else if ( args.result == 'server_reject' ) {
 				$('.gio-results').prepend('<div class="gio-result error">' + args.message + '</div>');
@@ -186,7 +186,15 @@ jQuery(document).ready( function($) {
                     gio.globalBusy = false;
 					if ( gio.folders.length == 0 ) {
 						clearInterval(gio.gtt);
-						//gio.init();						
+						$.ajax({
+							type : "POST",
+							url : ajaxurl,
+							data : { action : 'gio_cancel_optimize' },
+							success : function() {
+							},
+							error : function() {
+							}
+						});						
 					}
                 }
 				gio.message( { 'result' : 'no_more_imgs', 'message' : 'there are no more files in selected folder' } );
@@ -282,6 +290,7 @@ jQuery(document).ready( function($) {
             $('.info .digit.success').text( gio.success );
             $('.info .no-need').text( gio.no_need );
             $('.info .rejected').text( gio.rejected );
+			$('.info .rejected-imgs').text( '' );
             if ( args && args.img_info && args.img_info.type == 'success' ) {
 				var percentage;
                 $('.info .saving .saved-bytes').html( parseInt( $('.info .saving .saved-bytes').text() ) + parseInt( args.img_info.save ) );

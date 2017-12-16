@@ -274,7 +274,7 @@ class GoogleImageOptimizer {
 			$content .= $file . ' size=' . filesize( $file ) . ', width = ' . $w . ', height=' . $h . PHP_EOL;
 			file_put_contents( GIO_UPLOAD_BASE . '/gio_log.txt', $content );
 			$this->current_img = array( 'file' => $file, 'start_size' => 0, 'finish_size' => 0, 'result' => false );
-			$result = array ( 'result' => 2, 'content' => __( 'file', 'gio' ) . ' ' . $this->get_front_filename( $file ) . __( 'has size ', 'gio' ) . filesize( $file ) . ', and width ' . $w . __( ' it mast be under 8Mb size and 1024px width, to check by Google API', 'gio' ), 'current_img' => $this->current_img );
+			$result = array ( 'result' => 2, 'content' => __( 'file', 'gio' ) . ' ' . $this->get_front_filename( $file ) . __( 'has size ', 'gio' ) . filesize( $file ) . ', and width ' . $w . __( ' it must be under 8Mb size and 1024px width, to check by Google API', 'gio' ), 'current_img' => $this->current_img );
 			
 		}
 		
@@ -394,26 +394,13 @@ class GoogleImageOptimizer {
 
     }
 
-    /*function deleteDir( $path ) {
-        if (empty($path)) {
-            return false;
-        }
-        return is_file($path) ?
-            @unlink($path) :
-            array_map(__FUNCTION__, glob($path.'/*')) == @rmdir($path);
-    }*/
-
     function recursiveDelete($path, $deleteParent = true){
-        /*foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dirPath, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST) as $path) {
-            $path->isFile() ? unlink($path->getPathname()) : rmdir($path->getPathname());
-        }
-        if($deleteParent) rmdir($dirPath);*/
 
         if(!empty($path) && is_dir($path) ){
             $dir  = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS); //upper dirs are not included,otherwise DISASTER HAPPENS :)
             $files = new RecursiveIteratorIterator($dir, RecursiveIteratorIterator::CHILD_FIRST);
             foreach ($files as $f) {
-                if ( is_file($f)) {
+                if ( is_file($f->getPathName())) {
                     unlink($f->getPathName());
                     //$f->getPathName();
                 }
