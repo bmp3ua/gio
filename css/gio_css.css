@@ -1,0 +1,43 @@
+.admin-gio-box {}
+.admin-gio-box .controls-box {}
+.admin-gio-box .gio-dest { width : 100%; height : 50px; }
+.admin-gio-box .btn {}
+.admin-gio-box .gio-start-optimize {}
+.admin-gio-box .gio-cancel-optimize {}
+.admin-gio-box .gio-results { height : 200px; overflow-x : hidden; overflow-y : auto; border : 1px solid #000; }
+.admin-gio-box .controls { display : flex; }
+.admin-gio-box .info { width : 100%; display : flex; flex-flow : row wrap; justify-content : space-between; }
+.admin-gio-box .info .left-side { flex : 0 0 50%; font-size : 16px; }
+.admin-gio-box .info .left-side > div { height : auto; padding : 2px 5px; }
+.admin-gio-box .info .info-input { }
+.admin-gio-box .info .info-input .info-label { display : block; cursor : default; }
+.admin-gio-box .info .info-input .info-label > span { display : block; }
+.admin-gio-box .info .info-input .info-label > div {}
+.admin-gio-box .info .left-side .digit { margin : 0; }
+.admin-gio-box .info .current-file { }
+.admin-gio-box .info .total {}
+.admin-gio-box .info .progress {}
+.admin-gio-box .info .success {}
+.admin-gio-box .info .no-need {}
+.admin-gio-box .info .rejected {}
+.admin-gio-box .info .time { flex : 0 0 50%; }
+
+.admin-gio-box .gio-results { width : 100%; }
+
+.admin-gio-box .destination { width : 400px; }
+.admin-gio-box .destination-dirs { max-height : 400px; overflow : auto; }
+.admin-gio-box .destination-dirs *:hover { cursor : pointer; }
+
+.admin-gio-box .target-dir {}
+.admin-gio-box .target-dir:hover { background-color : #0FA9B5; }
+.admin-gio-box .target-dir.selected { background-color : #2a86db; }
+.admin-gio-box .parent-dir.selected .child-dir { background-color : #2a86db; }
+
+.admin-gio-box .target-dir.parent-dir { text-transform : uppercase; font-weight : 700; }
+.admin-gio-box .target-dir.child-dir { width : calc(100% - 20px); margin-left : 20px; }
+
+.admin-gio-box .rejected-imgs { max-height : 200px; overflow : auto; }
+
+
+
+
